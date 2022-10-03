@@ -1,28 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`supported $create_alias 1`] = `
-Object {
+{
   "anonymousId": "180d9a2c070861-0c82a7dd77400b-34736704-16a7f0-180d9a2c0711cbb",
-  "context": Object {
-    "app": Object {
+  "context": {
+    "app": {
       "version": "1.35.0",
     },
-    "os": Object {
+    "os": {
       "name": "Mac OS X",
     },
-    "page": Object {
+    "page": {
       "host": "localhost:8000",
       "path": "/events",
       "referrer": "http://localhost:8000/authorize_and_redirect/?redirect=http%3A%2F%2Flocalhost%3A8000%2Fproject%2Fsettings",
       "search": "",
       "url": "http://localhost:8000/events",
     },
-    "screen": Object {
+    "screen": {
       "height": 982,
       "width": 1512,
     },
   },
-  "libary": Object {
+  "libary": {
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
@@ -34,15 +34,55 @@ Object {
 }
 `;
 
-exports[`supported $identify 1`] = `
-Object {
-  "libary": Object {
+exports[`supported $groupidentify 1`] = `
+{
+  "anonymousId": "180d9a2c070861-0c82a7dd77400b-34736704-16a7f0-180d9a2c0711cbb",
+  "context": {
+    "app": {
+      "version": "1.35.0",
+    },
+    "os": {
+      "name": "Mac OS X",
+    },
+    "page": {
+      "host": "localhost:8000",
+      "path": "/project/apps",
+      "referrer": "http://localhost:8000/authorize_and_redirect/?redirect=http%3A%2F%2Flocalhost%3A8000%2Fproject%2Fsettings",
+      "search": "",
+      "url": "http://localhost:8000/project/apps",
+    },
+    "screen": {
+      "height": 982,
+      "width": 1512,
+    },
+  },
+  "groupId": "http://localhost:8000",
+  "libary": {
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
   "messageId": "0",
   "timestamp": "2020-11-26T12:58:58.453Z",
-  "traits": Object {
+  "traits": {
+    "instance": "http://localhost:8000",
+    "organization": "0180d9a2-b90a-0000-34d4-e261a7db0061",
+    "posthog_group_type": "instance",
+    "project": "0180d9a2-bdc7-0000-33c9-e4c7337dc44f",
+  },
+  "type": "group",
+  "userId": "YiZpN3z6sbgGuZ93bWpAqsfyaQDj1la4us2p3mT41uj",
+}
+`;
+
+exports[`supported $identify 1`] = `
+{
+  "libary": {
+    "name": "posthog-variance-plugin",
+    "version": "0.0.0",
+  },
+  "messageId": "0",
+  "timestamp": "2020-11-26T12:58:58.453Z",
+  "traits": {
     "email": "guillaume@variance.com",
   },
   "type": "identify",
@@ -51,33 +91,33 @@ Object {
 `;
 
 exports[`supported $pageview 1`] = `
-Object {
+{
   "anonymousId": "180d9a2c070861-0c82a7dd77400b-34736704-16a7f0-180d9a2c0711cbb",
-  "context": Object {
-    "app": Object {
+  "context": {
+    "app": {
       "version": "1.35.0",
     },
-    "os": Object {
+    "os": {
       "name": "Mac OS X",
     },
-    "page": Object {
+    "page": {
       "host": "localhost:8000",
       "path": "/home",
       "referrer": "http://localhost:8000/authorize_and_redirect/?redirect=http%3A%2F%2Flocalhost%3A8000%2Fproject%2Fsettings",
       "search": "",
       "url": "http://localhost:8000/home",
     },
-    "screen": Object {
+    "screen": {
       "height": 982,
       "width": 1512,
     },
   },
-  "libary": Object {
+  "libary": {
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
   "messageId": "0",
-  "properties": Object {
+  "properties": {
     "host": "localhost:8000",
     "path": "/home",
     "referrer": "http://localhost:8000/authorize_and_redirect/?redirect=http%3A%2F%2Flocalhost%3A8000%2Fproject%2Fsettings",
@@ -90,31 +130,31 @@ Object {
 `;
 
 exports[`supported custom event 1`] = `
-Object {
+{
   "anonymousId": "180d9a2c070861-0c82a7dd77400b-34736704-16a7f0-180d9a2c0711cbb",
-  "context": Object {
-    "os": Object {
+  "context": {
+    "os": {
       "name": "Mac OS X",
     },
-    "page": Object {
+    "page": {
       "host": "localhost:8000",
       "path": "/project/apps",
       "referrer": "http://localhost:8000/authorize_and_redirect/?redirect=http%3A%2F%2Flocalhost%3A8000%2Fproject%2Fsettings",
       "search": "",
       "url": "http://localhost:8000/project/apps",
     },
-    "screen": Object {
+    "screen": {
       "height": 982,
       "width": 1512,
     },
   },
   "event": "team has ingested events",
-  "libary": Object {
+  "libary": {
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
   "messageId": "0",
-  "properties": Object {
+  "properties": {
     "distinct_id": "YiZpN3z6sbgGuZ93bWpAqsfyaQDj1la4us2p3mT41uj",
     "is_demo_project": false,
     "token": "phc_r06aTsEyFENJMKoqoJCoPxCtRCQGZFw1njECfKiup7K",

@@ -4,6 +4,7 @@ import set from 'lodash.set'
 
 enum PostHogEventType {
   alias = `$create_alias`,
+  group = `$groupidentify`,
   identify = `$identify`,
   page = `$pageview`,
 }
@@ -61,6 +62,10 @@ const mappings: Record<PostHogEventType, Mapping> = {
     'properties.referrer': `properties.$referrer`,
     'properties.url': `properties.$current_url`,
   },
+  [PostHogEventType.group]: {
+    'groupId': `properties.$group_key`,
+    'traits.posthog_group_type': `properties.$group_type`,
+  },
 }
 
 export async function onEvent(
@@ -98,6 +103,11 @@ export async function onEvent(
     constructPayload(output, event, mappings[event.event])
     switch (event.event) {
       case PostHogEventType.alias:
+        break
+      case PostHogEventType.group:
+        foreachProperties(event.properties?.$groups, (key, value) =>
+          set(output, `traits.${key}`, value)
+        )
         break
       case PostHogEventType.identify:
         foreachProperties(event.properties?.$set, (key, value) =>
@@ -150,6 +160,8 @@ function getVarianceType(event: PostHogEventType): VarianceEventType {
   switch (event) {
     case PostHogEventType.alias:
       return VarianceEventType.alias
+    case PostHogEventType.group:
+      return VarianceEventType.group
     case PostHogEventType.identify:
       return VarianceEventType.identify
     case PostHogEventType.page:

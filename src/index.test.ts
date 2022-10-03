@@ -56,6 +56,10 @@ describe(`supported`, () => {
     await assertFetch(alias, VarianceEventType.alias)
   })
 
+  it(`$groupidentify`, async () => {
+    await assertFetch(groupidentify, VarianceEventType.group)
+  })
+
   it(`$identify`, async () => {
     await assertFetch(identify, VarianceEventType.identify)
   })
@@ -85,10 +89,6 @@ describe(`ignore`, () => {
 
   it(`$autocapture`, async () => {
     await assertIgnore(autocapture)
-  })
-
-  it(`$groupidentify`, async () => {
-    await assertIgnore(groupidentify)
   })
 
   it(`$feature_flag_called`, async () => {

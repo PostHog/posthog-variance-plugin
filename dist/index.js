@@ -1926,6 +1926,7 @@ var lodash_set = set;
 var PostHogEventType;
 (function (PostHogEventType) {
     PostHogEventType["alias"] = "$create_alias";
+    PostHogEventType["group"] = "$groupidentify";
     PostHogEventType["identify"] = "$identify";
     PostHogEventType["page"] = "$pageview";
 })(PostHogEventType || (PostHogEventType = {}));
@@ -1969,9 +1970,13 @@ const mappings = {
         'properties.referrer': `properties.$referrer`,
         'properties.url': `properties.$current_url`,
     },
+    [PostHogEventType.group]: {
+        'groupId': `properties.$group_key`,
+        'traits.posthog_group_type': `properties.$group_type`,
+    },
 };
 async function onEvent(event, { config }) {
-    var _a, _b;
+    var _a, _b, _c;
     if (!isValidEvent(event))
         return;
     if (event.event.startsWith(`$`) && !isSupportedEvent(event.event)) {
@@ -1982,7 +1987,7 @@ async function onEvent(event, { config }) {
     const output = {
         libary: {
             name: "posthog-variance-plugin",
-            version: undefined,
+            version: "1.0.0",
         },
         messageId: event.uuid,
         timestamp: event.timestamp,
@@ -2000,8 +2005,11 @@ async function onEvent(event, { config }) {
         switch (event.event) {
             case PostHogEventType.alias:
                 break;
+            case PostHogEventType.group:
+                foreachProperties((_b = event.properties) === null || _b === void 0 ? void 0 : _b.$groups, (key, value) => lodash_set(output, `traits.${key}`, value));
+                break;
             case PostHogEventType.identify:
-                foreachProperties((_b = event.properties) === null || _b === void 0 ? void 0 : _b.$set, (key, value) => lodash_set(output, `traits.${key}`, value));
+                foreachProperties((_c = event.properties) === null || _c === void 0 ? void 0 : _c.$set, (key, value) => lodash_set(output, `traits.${key}`, value));
                 break;
             case PostHogEventType.page:
                 if (search)
@@ -2043,6 +2051,8 @@ function getVarianceType(event) {
     switch (event) {
         case PostHogEventType.alias:
             return VarianceEventType.alias;
+        case PostHogEventType.group:
+            return VarianceEventType.group;
         case PostHogEventType.identify:
             return VarianceEventType.identify;
         case PostHogEventType.page:
