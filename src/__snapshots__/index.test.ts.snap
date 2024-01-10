@@ -26,7 +26,7 @@ exports[`supported $create_alias 1`] = `
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
-  "messageId": "0",
+  "messageId": "10000000-0000-4000-0000-000000000000",
   "previousId": "YiZpN3z6sbgGuZ93bWpAqsfyaQDj1la4us2p3mT41uj",
   "timestamp": "2020-11-26T12:58:58.453Z",
   "type": "alias",
@@ -61,7 +61,7 @@ exports[`supported $groupidentify 1`] = `
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
-  "messageId": "0",
+  "messageId": "10000000-0000-4000-0000-000000000000",
   "timestamp": "2020-11-26T12:58:58.453Z",
   "traits": {
     "instance": "http://localhost:8000",
@@ -80,7 +80,7 @@ exports[`supported $identify 1`] = `
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
-  "messageId": "0",
+  "messageId": "10000000-0000-4000-0000-000000000000",
   "timestamp": "2020-11-26T12:58:58.453Z",
   "traits": {
     "email": "guillaume@variance.com",
@@ -116,7 +116,7 @@ exports[`supported $pageview 1`] = `
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
-  "messageId": "0",
+  "messageId": "10000000-0000-4000-0000-000000000000",
   "properties": {
     "host": "localhost:8000",
     "path": "/home",
@@ -153,7 +153,7 @@ exports[`supported custom event 1`] = `
     "name": "posthog-variance-plugin",
     "version": "0.0.0",
   },
-  "messageId": "0",
+  "messageId": "10000000-0000-4000-0000-000000000000",
   "properties": {
     "distinct_id": "YiZpN3z6sbgGuZ93bWpAqsfyaQDj1la4us2p3mT41uj",
     "is_demo_project": false,
