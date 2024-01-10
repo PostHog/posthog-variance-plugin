@@ -35,7 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@commitlint/cli", "npm:17.1.2"],\
             ["@commitlint/config-conventional", "npm:17.1.0"],\
-            ["@posthog/plugin-scaffold", "npm:1.3.4"],\
+            ["@posthog/plugin-scaffold", "npm:1.6.0"],\
             ["@rollup/plugin-commonjs", "virtual:7e7152d4c3dbaada56a87592cbea2c71eb8259becd5f14f58937137261bfe8e2f5d5623ed1f6a8383b2a45b7aaaea86758aa7da8ad3c6b17d29d8cc750c5f0c2#npm:22.0.2"],\
             ["@rollup/plugin-node-resolve", "virtual:7e7152d4c3dbaada56a87592cbea2c71eb8259becd5f14f58937137261bfe8e2f5d5623ed1f6a8383b2a45b7aaaea86758aa7da8ad3c6b17d29d8cc750c5f0c2#npm:14.1.0"],\
             ["@rollup/plugin-replace", "virtual:7e7152d4c3dbaada56a87592cbea2c71eb8259becd5f14f58937137261bfe8e2f5d5623ed1f6a8383b2a45b7aaaea86758aa7da8ad3c6b17d29d8cc750c5f0c2#npm:4.0.0"],\
@@ -1567,10 +1567,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@posthog/plugin-scaffold", [\
-        ["npm:1.3.4", {\
-          "packageLocation": "./.yarn/cache/@posthog-plugin-scaffold-npm-1.3.4-91a317ffe9-e85a30e8e5.zip/node_modules/@posthog/plugin-scaffold/",\
+        ["npm:1.6.0", {\
+          "packageLocation": "./.yarn/cache/@posthog-plugin-scaffold-npm-1.6.0-1f2a7fa642-553d121453.zip/node_modules/@posthog/plugin-scaffold/",\
           "packageDependencies": [\
-            ["@posthog/plugin-scaffold", "npm:1.3.4"],\
+            ["@posthog/plugin-scaffold", "npm:1.6.0"],\
             ["@maxmind/geoip2-node", "npm:3.4.0"]\
           ],\
           "linkType": "HARD"\
@@ -6623,7 +6623,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["posthog-variance-plugin", "workspace:."],\
             ["@commitlint/cli", "npm:17.1.2"],\
             ["@commitlint/config-conventional", "npm:17.1.0"],\
-            ["@posthog/plugin-scaffold", "npm:1.3.4"],\
+            ["@posthog/plugin-scaffold", "npm:1.6.0"],\
             ["@rollup/plugin-commonjs", "virtual:7e7152d4c3dbaada56a87592cbea2c71eb8259becd5f14f58937137261bfe8e2f5d5623ed1f6a8383b2a45b7aaaea86758aa7da8ad3c6b17d29d8cc750c5f0c2#npm:22.0.2"],\
             ["@rollup/plugin-node-resolve", "virtual:7e7152d4c3dbaada56a87592cbea2c71eb8259becd5f14f58937137261bfe8e2f5d5623ed1f6a8383b2a45b7aaaea86758aa7da8ad3c6b17d29d8cc750c5f0c2#npm:14.1.0"],\
             ["@rollup/plugin-replace", "virtual:7e7152d4c3dbaada56a87592cbea2c71eb8259becd5f14f58937137261bfe8e2f5d5623ed1f6a8383b2a45b7aaaea86758aa7da8ad3c6b17d29d8cc750c5f0c2#npm:4.0.0"],\

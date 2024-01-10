@@ -1054,12 +1054,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@posthog/plugin-scaffold@npm:1.3.4":
-  version: 1.3.4
-  resolution: "@posthog/plugin-scaffold@npm:1.3.4"
+"@posthog/plugin-scaffold@npm:1.6.0":
+  version: 1.6.0
+  resolution: "@posthog/plugin-scaffold@npm:1.6.0"
   dependencies:
     "@maxmind/geoip2-node": ^3.4.0
-  checksum: e85a30e8e57b23f4f5244ce067fc509b38703ae8574842f887c2d65d235366799163154815d1717ce86537b50bd16289667f645ad72df6d5b496116e81b66c07
+  checksum: 553d1214530a376122925bd6a43e646fd716d69e631f46b027015e697cd8f552c19e493cf169480034f2baffeb75154a234c0edbcef9b1b63952be45aa547a45
   languageName: node
   linkType: hard
 
@@ -5259,7 +5259,7 @@ __metadata:
   dependencies:
     "@commitlint/cli": 17.1.2
     "@commitlint/config-conventional": 17.1.0
-    "@posthog/plugin-scaffold": 1.3.4
+    "@posthog/plugin-scaffold": 1.6.0
     "@rollup/plugin-commonjs": 22.0.2
     "@rollup/plugin-node-resolve": 14.1.0
     "@rollup/plugin-replace": 4.0.0

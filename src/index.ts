@@ -1,4 +1,4 @@
-import type { Meta, PluginEvent } from '@posthog/plugin-scaffold'
+import type { Meta, PostHogEvent, Webhook } from '@posthog/plugin-scaffold'
 import get from 'lodash.get'
 import set from 'lodash.set'
 
@@ -17,13 +17,15 @@ export enum VarianceEventType {
   'track' = `track`,
 }
 
-export interface VarianceConfig {
-  authHeader: string
-  webhookUrl: string
+export interface VarianceMetaInput {
+  config: {
+    authHeader: string
+    webhookUrl: string
+  }
 }
 
-interface ValidEvent extends PluginEvent {
-  timestamp: string
+interface ValidEvent extends PostHogEvent {
+  timestamp: Date
   uuid: string
 }
 
@@ -68,15 +70,17 @@ const mappings: Record<PostHogEventType, Mapping> = {
   },
 }
 
-export async function onEvent(
-  event: PluginEvent,
-  { config }: Meta<{ config: VarianceConfig }>
-) {
-  if (!isValidEvent(event)) return
+export function composeWebhook(
+  event: PostHogEvent,
+  { config }: Meta<VarianceMetaInput>
+): Webhook | null {
+  if (!isValidEvent(event)) {
+    return null
+  }
 
   if (event.event.startsWith(`$`) && !isSupportedEvent(event.event)) {
     console.debug(`Unsupported event: ${event.event}`)
-    return
+    return null
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -91,7 +95,7 @@ export async function onEvent(
 
   constructPayload(output, event, generic)
 
-  const url = event.properties?.$current_url
+  const url = event.properties.$current_url
   let search: string | undefined
   if (typeof url === `string`) {
     search = new URL(url).search
@@ -105,12 +109,12 @@ export async function onEvent(
       case PostHogEventType.alias:
         break
       case PostHogEventType.group:
-        foreachProperties(event.properties?.$groups, (key, value) =>
+        foreachProperties(event.properties.$groups, (key, value) =>
           set(output, `traits.${key}`, value)
         )
         break
       case PostHogEventType.identify:
-        foreachProperties(event.properties?.$set, (key, value) =>
+        foreachProperties(event.properties.$set, (key, value) =>
           set(output, `traits.${key}`, value)
         )
         break
@@ -126,7 +130,15 @@ export async function onEvent(
     )
   }
 
-  return send(output, config)
+  return {
+    body: JSON.stringify(output),
+    headers: {
+      'Authorization': config.authHeader,
+      'Content-Type': `application/json`,
+    },
+    method: `POST`,
+    url: config.webhookUrl,
+  } as Webhook
 }
 
 function foreachProperties(
@@ -140,12 +152,12 @@ function foreachProperties(
   })
 }
 
-function isValidEvent(event: PluginEvent): event is ValidEvent {
+function isValidEvent(event: PostHogEvent): event is ValidEvent {
   if (!event.uuid) {
     console.error(`Event missing uuid`)
     return false
   }
-  if (!event.timestamp) {
+  if (event.timestamp === new Date(0)) {
     console.error(`Event missing timestamp`)
     return false
   }
@@ -175,7 +187,7 @@ function isDefined(value: unknown) {
 
 function constructPayload(
   outPayload: Record<string, unknown>,
-  inPayload: PluginEvent,
+  inPayload: PostHogEvent,
   mapping: Mapping
 ) {
   Object.keys(mapping).forEach((varianceKeyPath) => {
@@ -195,16 +207,4 @@ function constructPayload(
       set(outPayload, varianceKeyPath, pHKeyVal)
     }
   })
-}
-
-async function send(payload: Record<string, unknown>, config: VarianceConfig) {
-  const resp = await fetch(config.webhookUrl, {
-    body: JSON.stringify(payload),
-    headers: {
-      'Authorization': config.authHeader,
-      'Content-Type': `application/json`,
-    },
-    method: `POST`,
-  })
-  if (!resp.ok) console.error(await resp.text())
 }
